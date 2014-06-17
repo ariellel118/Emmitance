@@ -39,12 +39,21 @@ void simu( void )
     geom.set_solid( 9, s3 );
     
     geom.set_boundary( 1, Bound(BOUND_DIRICHLET,  0.0) );
+<<<<<<< HEAD
     geom.set_boundary( 2, Bound(BOUND_DIRICHLET,  200.0) );
     geom.set_boundary( 3, Bound(BOUND_NEUMANN,     0.0  ) );
     geom.set_boundary( 4, Bound(BOUND_NEUMANN,     0.0  ) );
     geom.set_boundary( 7, Bound(BOUND_DIRICHLET,  200) );
     geom.set_boundary( 8, Bound(BOUND_DIRICHLET, -110) );
     geom.set_boundary( 9, Bound(BOUND_DIRICHLET, 200) );
+=======
+    geom.set_boundary( 2, Bound(BOUND_DIRICHLET,  400.0) );
+    geom.set_boundary( 3, Bound(BOUND_NEUMANN,     0.0  ) );
+    geom.set_boundary( 4, Bound(BOUND_NEUMANN,     0.0  ) );
+    geom.set_boundary( 7, Bound(BOUND_DIRICHLET,  400) );
+    geom.set_boundary( 8, Bound(BOUND_DIRICHLET, -341) );
+    geom.set_boundary( 9, Bound(BOUND_DIRICHLET, 400) );
+>>>>>>> 8b8ad4bb85bab870014cee3366cfdf878053b97e
     geom.build_mesh();
 
     EpotField epot( geom );
@@ -67,10 +76,17 @@ void simu( void )
 	solver.solve( epot, scharge );
 	efield.recalculate();
 	pdb.clear();
+<<<<<<< HEAD
 	pdb.add_2d_beam_with_energy( 5000, 5e-9, -1.0, 5.485799e-4, 
 				     50, 0.0, 0.0, 
 				     0.0, 0.0, 
 				     0.0, 0.000030 );
+=======
+	pdb.add_2d_beam_with_energy( 1500, 5e-9, -1.0, 5.485799e-4, 
+				     500, 0.0, 0.0, 
+				     0.0, 0.0, 
+				     0.0, 0.000012 );
+>>>>>>> 8b8ad4bb85bab870014cee3366cfdf878053b97e
 	pdb.iterate_trajectories( scharge, efield, bfield );
     }
 
@@ -78,6 +94,7 @@ void simu( void )
     geomplotter.set_size( 750, 750 );
     geomplotter.set_epot( &epot );
     geomplotter.set_particle_database( &pdb );
+<<<<<<< HEAD
     geomplotter.plot_png( "geom.png" );
 
 
@@ -107,6 +124,13 @@ void simu( void )
     partplotter6.plot_png("IvsEK_atDiode.png");
 
 
+=======
+    geomplotter.plot_png( "plot3.png" );
+
+    ParticleDiagPlotter partplotter(geom, pdb, AXIS_X,0.015, PARTICLE_DIAG_PLOT_SCATTER, DIAG_R, DIAG_EK);
+    partplotter.set_size(750,750);
+    partplotter.plot_png("plot4.png");
+>>>>>>> 8b8ad4bb85bab870014cee3366cfdf878053b97e
 
     /* GTKPlotter plotter( argc, argv );
     plotter.set_geometry( &geom );
